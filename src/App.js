@@ -1,7 +1,14 @@
 import "./styles/App.css";
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+} from "firebase/auth";
 import {
   addDoc,
   collection,
@@ -41,6 +48,26 @@ const analytics = getAnalytics(firebaseApp);
 
 // Initialize auth
 const auth = getAuth(firebaseApp);
+
+// Sign in with email and password
+export async function simpleSignIn(e) {
+  e.preventDefault();
+  const email = e.target.email.value;
+  console.log(email);
+  const password = e.target.password.value;
+  console.log(password);
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode + " " + errorMessage);
+    });
+}
 
 // Signs-in to Fakegram.
 export async function signIn() {

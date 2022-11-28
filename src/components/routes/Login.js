@@ -1,8 +1,9 @@
 import "../../styles/Login.css";
 
+import { signIn, simpleSignIn } from "../../App";
+
 import React from "react";
 import iphone12 from "../../assets/iphone12.png";
-import { signIn } from "../../App";
 
 const googleLogo = (
   <svg viewBox="0 0 128 128">
@@ -38,12 +39,15 @@ const Login = () => {
     <div className="loginContainer">
       <img src={iphone12} alt="phone" />
       <div className="login-right">
-        <div className="loginForm">
+        <form className="loginForm" onSubmit={simpleSignIn}>
           <h2>Fakegram</h2>
-          <input type="text" className="loginInput" placeholder="Email adress" />
-          <input type="password" className="loginInput" placeholder="Password" />
-          <button className="signInButton">Sign in</button>
-        </div>
+          <input type="text" className="loginInput" name="email" placeholder="Email adress" />
+          <input type="password" className="loginInput" name="password" placeholder="Password" />
+          <button className="signInButton" type="submit">
+            Sign in
+          </button>
+          <p>Don't have an account? Sign-up</p>
+        </form>
         <div className="alternateLogin">
           <img
             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"

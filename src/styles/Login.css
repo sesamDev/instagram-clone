@@ -17,7 +17,7 @@
   border: 1px solid rgb(140, 140, 140);
   border-radius: 2px;
   display: grid;
-  grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr;
+  grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
   min-width: 500px;
   margin: 10px 24px;
   justify-content: center;
@@ -34,11 +34,21 @@
   height: 50px;
   width: 100%;
   margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  padding-left: 0.5rem;
 }
 .loginForm > button {
+  font-size: 1.5rem;
+  background-color: rgb(116, 177, 221);
+  color: white;
   height: 50px;
   width: 100%;
   margin-bottom: 0.5rem;
+}
+
+.loginForm > p {
+  text-align: center;
+  font-size: 1.2rem;
 }
 
 .alternateLogin {
