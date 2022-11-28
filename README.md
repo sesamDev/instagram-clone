@@ -10,7 +10,7 @@ Making this as a part of The Odin Project curriculum
 
 ## TODO - This will be updated alongside project progress
 
-- [] Login screen
-- [] Main feed
-- [] Chat functionality
-- [] Profile screen
+- [ ] Login screen
+- [ ] Main feed
+- [ ] Chat functionality
+- [ ] Profile screen
