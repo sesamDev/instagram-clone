@@ -9,7 +9,8 @@ Making this as a part of The Odin Project curriculum
 3. Make it mobile and web friendly
 
 ## TODO - This will be updated alongside project progress
-[ ] Login screen
-[ ] Main feed
-[ ] Chat functionality
-[ ] Profile screen
+
+- [] Login screen
+- [] Main feed
+- [] Chat functionality
+- [] Profile screen
