@@ -1,0 +1,58 @@
+.loginContainer {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  max-width: 80vw;
+  flex-wrap: wrap;
+}
+
+.loginContainer > img {
+  width: 300px;
+}
+
+.loginForm {
+  max-height: 450px;
+  border: 1px solid rgb(140, 140, 140);
+  border-radius: 2px;
+  display: grid;
+  grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr;
+  min-width: 500px;
+  margin: 10px 24px;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginForm > h2 {
+  font-size: 4rem;
+  padding: 0 4.5rem;
+  margin: 2rem 0;
+}
+
+.loginForm > .loginInput {
+  height: 50px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+.loginForm > button {
+  height: 50px;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.alternateLogin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  height: 30%;
+  border: 1px solid rgb(140, 140, 140);
+  min-width: 500px;
+  margin: 10px 24px;
+}
+
+.alternateLogin > img {
+  padding: 0 20px;
+  cursor: pointer;
+}
