@@ -29,6 +29,10 @@ const googleLogo = (
   </svg>
 );
 
+function notImplemented() {
+  return alert("Not implemented yet :(");
+}
+
 const Login = () => {
   return (
     <div className="loginContainer">
@@ -52,12 +56,14 @@ const Login = () => {
             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg"
             height={50}
             alt="apple-logo"
+            onClick={notImplemented}
           />
 
           <img
             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
             height={50}
             alt="github-logo"
+            onClick={notImplemented}
           />
         </div>
       </div>
