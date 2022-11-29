@@ -2,6 +2,7 @@ import "../../styles/Login.css";
 
 import { signIn, simpleSignIn } from "../../App";
 
+import { Link } from "react-router-dom";
 import React from "react";
 import iphone12 from "../../assets/iphone12.png";
 
@@ -22,7 +23,12 @@ const Login = () => {
           <button className="signInButton" type="submit">
             Sign in
           </button>
-          <p>Don't have an account? Sign-up</p>
+          <p>
+            Don't have an account?{" "}
+            <Link to="signup" className="signUpLink">
+              Sign-up
+            </Link>
+          </p>
         </form>
         <div className="alternateLogin">
           <img

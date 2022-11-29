@@ -29,6 +29,7 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import Home from "./components/routes/Home";
 import Login from "./components/routes/Login";
 import Profile from "./components/routes/Profile";
+import SignUp from "./components/routes/SignUp";
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
 
@@ -81,7 +82,6 @@ export function signOutUser() {
 
 function App() {
   const [user] = useAuthState(auth);
-  console.log(!!user);
   return <div className="App">{!!user ? <Home /> : <Login />}</div>;
 }
 
