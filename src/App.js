@@ -3,6 +3,7 @@ import "./styles/App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   GoogleAuthProvider,
+  createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
@@ -50,6 +51,28 @@ const analytics = getAnalytics(firebaseApp);
 // Initialize auth
 const auth = getAuth(firebaseApp);
 
+export function createUserEmailPassword(e) {
+  e.preventDefault();
+  const email = e.target.email.value;
+  const password = e.target.password.value;
+  const username = e.target.username.value;
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      // Navigate to home page after creating account
+      window.location.replace("../");
+
+      const user = userCredential.user;
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log("ERROR: " + errorCode, errorMessage);
+      // ..
+    });
+}
+
 // Sign in with email and password.
 export async function simpleSignIn(e) {
   e.preventDefault();
@@ -58,6 +81,7 @@ export async function simpleSignIn(e) {
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
+
       const user = userCredential.user;
       // ...
     })
