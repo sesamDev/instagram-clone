@@ -49,13 +49,11 @@ const analytics = getAnalytics(firebaseApp);
 // Initialize auth
 const auth = getAuth(firebaseApp);
 
-// Sign in with email and password
+// Sign in with email and password.
 export async function simpleSignIn(e) {
   e.preventDefault();
   const email = e.target.email.value;
-  console.log(email);
   const password = e.target.password.value;
-  console.log(password);
   signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       // Signed in
@@ -63,13 +61,12 @@ export async function simpleSignIn(e) {
       // ...
     })
     .catch((error) => {
-      const errorCode = error.code;
       const errorMessage = error.message;
-      console.log(errorCode + " " + errorMessage);
+      alert(errorMessage);
     });
 }
 
-// Signs-in to Fakegram.
+// Signs-in to Fakegram with Google.
 export async function signIn() {
   // Sign in Firebase using popup auth and Google as the identity provider.
   var provider = new GoogleAuthProvider();
