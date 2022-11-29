@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8e21d568.css",
+    "main.js": "/static/js/main.d47d63ea.js",
+    "static/media/imagePH.jpeg": "/static/media/imagePH.ff91dd355e0dbb4cbfaa.jpeg",
+    "static/media/iphone12.png": "/static/media/iphone12.eb40e9902ae11cc0993d.png",
+    "index.html": "/index.html",
+    "main.8e21d568.css.map": "/static/css/main.8e21d568.css.map",
+    "main.d47d63ea.js.map": "/static/js/main.d47d63ea.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8e21d568.css",
+    "static/js/main.d47d63ea.js"
+  ]
+}
