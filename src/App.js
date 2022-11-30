@@ -169,10 +169,10 @@ function App() {
   }
 
   return (
-    <>
+    <div className="App">
       {!!user ? <Navbar setActiveView={setActiveView} /> : null}
       {renderViewSwitcher(activeView)}
-    </>
+    </div>
   );
 }
 

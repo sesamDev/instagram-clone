@@ -1,3 +1,5 @@
+import "../../styles/Home.css";
+
 import React, { useEffect, useState } from "react";
 import { collection, getDocs, getFirestore, limit, orderBy, query } from "firebase/firestore";
 
@@ -27,7 +29,7 @@ const Home = () => {
     loadPosts().then((data) => SetPosts(data));
   }, []);
   return (
-    <div>
+    <div className="appHome">
       {posts.map((post) => {
         return <Card key={post.id} post={post} />;
       })}

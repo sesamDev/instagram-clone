@@ -62,12 +62,12 @@ const Card = (props) => {
   // TODO: Fix timestamp
   return (
     <div className="card">
-      <div className="author">
+      <div className="cardAuthor">
         <img src={profilePicUrl} alt="author" />
         <span>{name}</span>
       </div>
 
-      <div className="cardContent">
+      <div className="cardImgContent">
         <img src={imageUrl} alt="content" />
       </div>
       <div className="actionButtons">

@@ -1,5 +1,37 @@
 .card {
   border: 2px solid rgb(212, 212, 212);
   border-radius: 10px;
-  width: auto;
+  width: 50%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardAuthor {
+  height: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.cardAuthor > img {
+  height: 80%;
+  border-radius: 50%;
+  margin-left: 0.2rem;
+}
+
+.cardAuthor > span {
+  margin-left: 0.5rem;
+}
+
+.cardImgContent {
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+}
+.cardImgContent > img {
+  max-width: 100%;
+  max-height: 100%;
+  flex-shrink: 1;
+  align-self: center;
 }
