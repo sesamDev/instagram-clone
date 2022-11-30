@@ -53,6 +53,16 @@ const analytics = getAnalytics(firebaseApp);
 // Initialize auth
 const auth = getAuth(firebaseApp);
 
+// Returns the signed-in user's display name.
+function getUserName() {
+  return getAuth().currentUser.displayName;
+}
+
+// Returns the signed-in user's profile Pic URL.
+function getProfilePicUrl() {
+  return getAuth().currentUser.photoURL || "/images/profile_placeholder.png";
+}
+
 export function createUserEmailPassword(e) {
   e.preventDefault();
   const email = e.target.email.value;
@@ -104,6 +114,37 @@ export async function signIn() {
 export function signOutUser() {
   // Sign out of Firebase.
   signOut(getAuth());
+}
+
+// Saves a new post containing an image and text in Firebase.
+// This first saves the text in Firestore.
+// Then saves the image in Storage.
+export async function savePostToStorage(file, postTextContent) {
+  try {
+    // 1 - Add a post with a loading icon that will get updated with the shared image.
+    const postRef = await addDoc(collection(getFirestore(), "posts"), {
+      name: getUserName(),
+      text: postTextContent,
+      imageUrl: "",
+      profilePicUrl: getProfilePicUrl(),
+      timestamp: serverTimestamp(),
+    });
+    // 2 - Upload the image to Cloud Storage.
+    const filePath = `${getAuth().currentUser.uid}/${postRef.id}/${file.name}`;
+    const newImageRef = ref(getStorage(), filePath);
+    const fileSnapshot = await uploadBytesResumable(newImageRef, file);
+
+    // 3 - Generate a public URL for the file.
+    const publicImageUrl = await getDownloadURL(newImageRef);
+
+    // 4 - Update the chat message placeholder with the image's URL.
+    await updateDoc(postRef, {
+      imageUrl: publicImageUrl,
+      storageUri: fileSnapshot.metadata.fullPath,
+    });
+  } catch (error) {
+    console.error("There was an error uploading a file to Cloud Storage:", error);
+  }
 }
 
 function App() {
