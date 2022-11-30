@@ -1,6 +1,5 @@
 import "./styles/App.css";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -10,6 +9,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import React, { useEffect, useState } from "react";
 import {
   addDoc,
   collection,
@@ -27,6 +27,7 @@ import { authStateObserver, useAuthState } from "react-firebase-hooks/auth";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
+import CreatePost from "./components/routes/CreatePost";
 import Home from "./components/routes/Home";
 import Login from "./components/routes/Login";
 import Navbar from "./components/Navbar";
@@ -107,11 +108,28 @@ export function signOutUser() {
 
 function App() {
   const [user] = useAuthState(auth);
+  const [activeView, setActiveView] = useState(() => "home");
+
+  function renderViewSwitcher(selectedActiveView) {
+    switch (selectedActiveView) {
+      case "home":
+        return !!user ? <Home /> : <Login />;
+      // case "signUp":
+      //   return <SignUp />;
+      case "profile":
+        return <Profile />;
+      case "createPost":
+        return <CreatePost />;
+      default:
+        return !!user ? <Home /> : <Login />;
+    }
+  }
+
   return (
-    <div className="App">
-      {!!user ? <Navbar /> : null}
-      {!!user ? <Home /> : <Login />}
-    </div>
+    <>
+      {!!user ? <Navbar setActiveView={setActiveView} /> : null}
+      {renderViewSwitcher(activeView)}
+    </>
   );
 }
 

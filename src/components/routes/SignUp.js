@@ -1,6 +1,5 @@
 import "../../styles/SignUp.css";
 
-import { Link } from "react-router-dom";
 import React from "react";
 import { createUserEmailPassword } from "../../App";
 
@@ -15,12 +14,7 @@ const SignUp = () => {
         <button type="submit" className="signUpSubmitBtn">
           Sign up
         </button>
-        <div>
-          Already have an account?{" "}
-          <Link to="/" className="signUpLink">
-            Login
-          </Link>
-        </div>
+        <div>Already have an account? Login</div>
       </form>
     </div>
   );
