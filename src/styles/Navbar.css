@@ -1,5 +1,5 @@
 .navbar {
-  height: 80px;
+  height: 8vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -24,13 +24,13 @@
 }
 
 .navbarItemsContainer > h2 {
-  font-size: 3.5rem;
+  font-size: 2rem;
   cursor: pointer;
 }
 
 .navButtons > .navButton {
   cursor: pointer;
-  transform: scale(2.5);
+  transform: scale(2);
   margin: 0 20px;
 }
 

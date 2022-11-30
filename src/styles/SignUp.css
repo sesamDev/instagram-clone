@@ -4,31 +4,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
+  padding: 0;
 }
 
 .signUpContainer > form {
-  height: 600px;
-  min-width: 30%;
+  max-height: 80%;
+  max-width: 60%;
   display: flex;
   flex-direction: column;
   border: 1px solid black;
   justify-content: center;
   align-items: center;
   border-radius: 2px;
+  padding: 0.5em 0;
 }
 
 .signUpContainer > form > input {
-  height: 50px;
+  height: 100%;
   width: 90%;
-  margin: 0.5rem 0;
   font-size: 1.5rem;
-  padding-left: 0.5rem;
+  margin-bottom: 0.5em;
 }
 .signUpContainer > form > button {
   font-size: 1.5rem;
   background-color: rgb(116, 177, 221);
   color: white;
-  height: 50px;
+  height: 100%;
   width: 90%;
   margin-bottom: 0.5rem;
   padding: 0;
@@ -36,7 +38,5 @@
 }
 
 .signUpContainer > form > h2 {
-  font-size: 4rem;
-  padding: 0 4.5rem;
-  margin: 2rem 0;
+  font-size: 3rem;
 }

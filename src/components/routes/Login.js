@@ -15,7 +15,7 @@ const Login = () => {
   return (
     <div className="loginContainer">
       <img src={iphone12} alt="phone" />
-      <div className="login-right">
+      <div className="loginRight">
         <form className="loginForm" onSubmit={simpleSignIn}>
           <h2>Fakegram</h2>
           <input type="text" className="loginInput" name="email" placeholder="Email adress" />
