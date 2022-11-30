@@ -57,15 +57,18 @@ const savePostButton = (
 );
 
 const Card = (props) => {
+  const { name, imageUrl, text, timestamp, profilePicUrl, likes } = props.post;
+
+  // TODO: Fix timestamp
   return (
     <div className="card">
       <div className="author">
-        <img src="/" alt="author" />
-        <span>Author name here</span>
+        <img src={profilePicUrl} alt="author" />
+        <span>{name}</span>
       </div>
 
       <div className="cardContent">
-        <img src={props.img} alt="content" />
+        <img src={imageUrl} alt="content" />
       </div>
       <div className="actionButtons">
         <span>{likeButton}</span>
@@ -73,10 +76,10 @@ const Card = (props) => {
         <span>{shareButton}</span>
         <span>{savePostButton}</span>
       </div>
-      <div className="numLikes">Number of likes</div>
-      <div className="cardTextContent">Text content</div>
+      {<div className="numLikes">{!!likes ? `${likes} likes` : ""}</div>}
+      <div className="cardTextContent">{text}</div>
       <div className="cardShowComments">See all comments</div>
-      <div className="datetimePosted">2 hours ago</div>
+      <div className="datetimePosted">timestamp</div>
       <div className="addComment">Add a comment</div>
     </div>
   );
