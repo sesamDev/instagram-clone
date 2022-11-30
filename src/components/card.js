@@ -56,7 +56,7 @@ const savePostButton = (
   </svg>
 );
 
-const Card = () => {
+const Card = (props) => {
   return (
     <div className="card">
       <div className="author">
@@ -65,7 +65,7 @@ const Card = () => {
       </div>
 
       <div className="cardContent">
-        <img src={imagePH} alt="content" />
+        <img src={props.img} alt="content" />
       </div>
       <div className="actionButtons">
         <span>{likeButton}</span>
