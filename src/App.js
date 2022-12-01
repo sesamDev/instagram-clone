@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import {
@@ -70,13 +71,14 @@ export function createUserEmailPassword(e) {
   const password = e.target.password.value;
   const username = e.target.username.value;
   createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
+    .then(() => {
+      updateProfile(auth.currentUser, {
+        displayName: username,
+      });
+    })
+    .then(() => {
       // Navigate to home page after creating account
       window.location.replace("../");
-
-      const user = userCredential.user;
-      // ...
     })
     .catch((error) => {
       const errorCode = error.code;
@@ -156,13 +158,15 @@ function App() {
   function renderViewSwitcher(selectedActiveView) {
     switch (selectedActiveView) {
       case "home":
-        return !!user ? <Home /> : <Login />;
-      // case "signUp":
-      //   return <SignUp />;
+        return !!user ? <Home /> : <Login setActiveView={setActiveView} />;
+      case "signUp":
+        return <SignUp setActiveView={setActiveView} />;
       case "profile":
-        return <Profile />;
+        return <Profile auth={auth} />;
       case "createPost":
         return <CreatePost />;
+      case "login":
+        return <Login setActiveView={setActiveView} />;
       default:
         return !!user ? <Home /> : <Login />;
     }
