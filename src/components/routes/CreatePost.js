@@ -10,7 +10,9 @@ function handleUploadButton(e) {
   savePostToStorage(file, postText);
   e.target.postTextContent.value = "";
 }
-const CreatePost = () => {
+
+const CreatePost = (props) => {
+  console.log(props.auth.currentUser.uid);
   return (
     <div>
       <h1>Upload new post</h1>

@@ -119,6 +119,10 @@ export function signOutUser() {
   signOut(getAuth());
 }
 
+function getUserUID() {
+  return auth.currentUser.uid;
+}
+
 // Saves a new post containing an image and text in Firebase.
 // This first saves the text in Firestore.
 // Then saves the image in Storage.
@@ -126,6 +130,7 @@ export async function savePostToStorage(file, postTextContent) {
   try {
     // 1 - Add a post with a loading icon that will get updated with the shared image.
     const postRef = await addDoc(collection(getFirestore(), "posts"), {
+      uid: getUserUID(),
       name: getUserName(),
       text: postTextContent,
       imageUrl: "",
@@ -164,7 +169,7 @@ function App() {
       case "profile":
         return <Profile auth={auth} />;
       case "createPost":
-        return <CreatePost />;
+        return <CreatePost auth={auth} />;
       case "login":
         return <Login setActiveView={setActiveView} />;
       default:
