@@ -156,13 +156,15 @@ function App() {
   function renderViewSwitcher(selectedActiveView) {
     switch (selectedActiveView) {
       case "home":
-        return !!user ? <Home /> : <Login />;
-      // case "signUp":
-      //   return <SignUp />;
+        return !!user ? <Home /> : <Login setActiveView={setActiveView} />;
+      case "signUp":
+        return <SignUp setActiveView={setActiveView} />;
       case "profile":
         return <Profile />;
       case "createPost":
         return <CreatePost />;
+      case "login":
+        return <Login setActiveView={setActiveView} />;
       default:
         return !!user ? <Home /> : <Login />;
     }

@@ -3,7 +3,7 @@ import "../../styles/SignUp.css";
 import React from "react";
 import { createUserEmailPassword } from "../../App";
 
-const SignUp = () => {
+const SignUp = (props) => {
   return (
     <div className="signUpContainer">
       <form onSubmit={createUserEmailPassword}>
@@ -14,7 +14,12 @@ const SignUp = () => {
         <button type="submit" className="signUpSubmitBtn">
           Sign up
         </button>
-        <div>Already have an account? Login</div>
+        <div>
+          Already have an account?{" "}
+          <button className="loginButton" onClick={() => props.setActiveView("login")}>
+            Login
+          </button>
+        </div>
       </form>
     </div>
   );

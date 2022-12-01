@@ -10,7 +10,7 @@ function notImplemented() {
   return alert("Not implemented yet :(");
 }
 
-const Login = () => {
+const Login = (props) => {
   return (
     <div className="loginContainer">
       <img src={iphone12} alt="phone" />
@@ -22,8 +22,19 @@ const Login = () => {
           <button className="signInButton" type="submit">
             Sign in
           </button>
-          <p>Don't have an account? Sign-up</p>
         </form>
+        <p>
+          Don't have an account?{" "}
+          <button
+            className="signUpButton"
+            onClick={() => {
+              console.log("Sign up button clicked");
+              props.setActiveView("signUp");
+            }}
+          >
+            Sign-up
+          </button>
+        </p>
         <div className="alternateLogin">
           <img
             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg"
