@@ -4,6 +4,7 @@ import { getProfilePicUrl, getUserName, getUserUID } from "../../App";
 
 import React from "react";
 import { getAuth } from "firebase/auth";
+import uniqid from "uniqid";
 
 // Saves a new post containing an image and text in Firebase.
 // This first saves the text in Firestore.
@@ -12,6 +13,7 @@ async function savePostToStorage(file, postTextContent) {
   try {
     // 1 - Add a post with a loading icon that will get updated with the shared image.
     const postRef = await addDoc(collection(getFirestore(), "posts"), {
+      id: uniqid(),
       uid: getUserUID(),
       name: getUserName(),
       text: postTextContent,
