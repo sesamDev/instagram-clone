@@ -35,6 +35,7 @@ async function updatePostsDisplayName(userID, newDisplayName) {
 
 const Profile = (props) => {
   let { photoURL, displayName, email } = props.auth.currentUser;
+  console.log(props.auth.currentUser);
 
   async function handleDisplayNameUpdate(e) {
     e.preventDefault();
