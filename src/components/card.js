@@ -1,7 +1,8 @@
 import "../styles/Card.css";
 
+import { doc, getDoc, getFirestore, updateDoc } from "firebase/firestore";
+
 import React from "react";
-import imagePH from "../assets/imagePH.jpeg";
 
 const likeButton = (
   <svg aria-label="Like" color="#8e8e8e" fill="#8e8e8e" height="24" role="img" viewBox="0 0 24 24" width="24">
@@ -56,12 +57,38 @@ const savePostButton = (
   </svg>
 );
 
+// Function used to get posts made by user to later update display name
+async function getPostFromDB(postID) {
+  console.log("fire");
+  // Array to hold post paths
+
+  const postRef = doc(getFirestore(), "posts", postID);
+  const currentLikes = (await getDoc(postRef)).data().likes;
+  return { postRef, currentLikes };
+}
+
+async function updateLikesOnPost(post) {
+  return updateDoc(post.postRef, { likes: post.currentLikes + 1 });
+}
+
+async function updateCard(card) {
+  //
+}
+
+async function handleLikingPost(e) {
+  const cardID = e.target.parentNode.parentNode.parentNode.id;
+  console.log(cardID);
+  const post = await getPostFromDB(cardID);
+  updateLikesOnPost(post);
+  //await updateCard({ cardID });
+}
+
 const Card = (props) => {
-  const { name, imageUrl, text, timestamp, profilePicUrl, likes } = props.post;
+  const { name, imageUrl, text, timestamp, profilePicUrl, likes, id } = props.post;
 
   // TODO: Fix timestamp
   return (
-    <div className="card">
+    <div className="card" id={id}>
       <div className="cardAuthor">
         <img src={profilePicUrl} alt="author" />
         <span>{name}</span>
@@ -71,12 +98,12 @@ const Card = (props) => {
         <img src={imageUrl} alt="content" />
       </div>
       <div className="actionButtons">
-        <span>{likeButton}</span>
+        <span onClick={(e) => handleLikingPost(e)}>{likeButton}</span>
         <span>{commentButton}</span>
         <span>{shareButton}</span>
         <span>{savePostButton}</span>
       </div>
-      {<div className="numLikes">{!!likes ? `${likes} likes` : ""}</div>}
+      {<div className="numLikes">{!!likes ? `${likes} likes` : " - likes"}</div>}
       <div className="cardTextContent">{text}</div>
       <div className="cardShowComments">See all comments</div>
       <div className="datetimePosted">timestamp</div>
