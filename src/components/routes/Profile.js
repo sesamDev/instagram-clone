@@ -1,6 +1,9 @@
+import "../../styles/Profile.css";
+
 import { collection, doc, getDocs, getFirestore, query, where } from "firebase/firestore";
 
 import React from "react";
+import defaultUser from "../../assets/defaultUser.png";
 import { updateDoc } from "firebase/firestore";
 import { updateProfile } from "firebase/auth";
 
@@ -35,6 +38,7 @@ async function updatePostsDisplayName(userID, newDisplayName) {
 
 const Profile = (props) => {
   let { photoURL, displayName, email } = props.auth.currentUser;
+  console.log(props.auth.currentUser);
 
   async function handleDisplayNameUpdate(e) {
     e.preventDefault();
@@ -49,12 +53,13 @@ const Profile = (props) => {
   }
 
   return (
-    <div>
-      <div>
-        {console.log(props.auth.currentUser)}
-        <img src={photoURL} alt="profilePic" />
-        <input type="text" defaultValue={displayName} onBlur={handleDisplayNameUpdate}></input>
-        <p>{email}</p>
+    <div className="profileContainer">
+      <div className="userProfile">
+        <img src={photoURL ? photoURL : defaultUser} alt="profilePic" />
+        <div class="userProfileNameAndEmail">
+          <input type="text" defaultValue={displayName} onBlur={handleDisplayNameUpdate}></input>
+          <p>{email}</p>
+        </div>
       </div>
       <div>All of users posts here</div>
     </div>

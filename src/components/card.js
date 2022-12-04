@@ -1,7 +1,9 @@
 import "../styles/Card.css";
 
+import { doc, getDoc, getFirestore, updateDoc } from "firebase/firestore";
+
 import React from "react";
-import imagePH from "../assets/imagePH.jpeg";
+import { getUserName } from "../App";
 
 const likeButton = (
   <svg aria-label="Like" color="#8e8e8e" fill="#8e8e8e" height="24" role="img" viewBox="0 0 24 24" width="24">
@@ -56,12 +58,35 @@ const savePostButton = (
   </svg>
 );
 
+// Function used to get posts made by user to later update display name
+async function getPostFromDB(postID) {
+  const postRef = doc(getFirestore(), "posts", postID);
+  const currentLikes = (await getDoc(postRef)).data().likes;
+  console.log(currentLikes);
+  return { postRef, currentLikes };
+}
+
+async function updateLikesOnPost(post) {
+  if (post.currentLikes.includes(getUserName())) {
+    return null;
+  }
+  return updateDoc(post.postRef, { likes: [...post.currentLikes, getUserName()] });
+}
+
+async function handleLikingPost(e) {
+  const cardID = e.target.parentNode.parentNode.parentNode.id;
+  const likeButton = e.target.parentNode;
+  likeButton.classList.add("paintRed");
+  const post = await getPostFromDB(cardID);
+  updateLikesOnPost(post);
+}
+
 const Card = (props) => {
-  const { name, imageUrl, text, timestamp, profilePicUrl, likes } = props.post;
+  const { name, imageUrl, text, timestamp, profilePicUrl, likes, id } = props.post;
 
   // TODO: Fix timestamp
   return (
-    <div className="card">
+    <div className="card" id={id}>
       <div className="cardAuthor">
         <img src={profilePicUrl} alt="author" />
         <span>{name}</span>
@@ -70,17 +95,26 @@ const Card = (props) => {
       <div className="cardImgContent">
         <img src={imageUrl} alt="content" />
       </div>
+      {console.log(getUserName())}
       <div className="actionButtons">
-        <span>{likeButton}</span>
+        <span
+          id="likeButton"
+          className={likes.includes(getUserName()) ? "paintRed" : ""}
+          onClick={(e) => handleLikingPost(e)}
+        >
+          {likeButton}
+        </span>
         <span>{commentButton}</span>
         <span>{shareButton}</span>
         <span>{savePostButton}</span>
       </div>
-      {<div className="numLikes">{!!likes ? `${likes} likes` : ""}</div>}
+      <div className="numLikes">{!!likes ? `${likes.length} likes` : " - likes"}</div>
       <div className="cardTextContent">{text}</div>
-      <div className="cardShowComments">See all comments</div>
-      <div className="datetimePosted">timestamp</div>
-      <div className="addComment">Add a comment</div>
+      <div className="cardContainerBottom">
+        <div className="cardShowComments">See all comments</div>
+        <div className="datetimePosted">timestamp</div>
+        <div className="addComment">Add a comment</div>
+      </div>
     </div>
   );
 };

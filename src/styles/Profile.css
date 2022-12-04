@@ -1,0 +1,33 @@
+.profileContainer {
+  max-width: 80vw;
+  align-self: center;
+}
+
+.userProfile {
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  margin-bottom: 4rem;
+}
+
+.userProfile > img {
+  max-width: 50%;
+}
+
+.userProfile > .userProfileNameAndEmail {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.userProfile > .userProfileNameAndEmail > input {
+  background-color: transparent;
+  color: white;
+  font-size: 1.5rem;
+  border: none;
+  height: auto;
+  cursor: pointer;
+}
+.userProfile > .userProfileNameAndEmail > p {
+  padding-left: 1rem;
+}
