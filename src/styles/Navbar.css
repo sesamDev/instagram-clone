@@ -8,15 +8,10 @@
   align-items: center;
   position: sticky;
   top: 0;
-  background-color: white;
-}
-#navLine {
-  border: 1px solid black;
-  width: 100vw;
 }
 
 .navbarItemsContainer {
-  width: 50%;
+  width: 90%;
   height: 100%;
   display: flex;
   flex-direction: row;
