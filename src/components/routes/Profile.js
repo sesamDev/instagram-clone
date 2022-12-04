@@ -38,7 +38,6 @@ async function updatePostsDisplayName(userID, newDisplayName) {
 
 const Profile = (props) => {
   let { photoURL, displayName, email } = props.auth.currentUser;
-  console.log(props.auth.currentUser);
 
   async function handleDisplayNameUpdate(e) {
     e.preventDefault();
@@ -56,7 +55,7 @@ const Profile = (props) => {
     <div className="profileContainer">
       <div className="userProfile">
         <img src={photoURL ? photoURL : defaultUser} alt="profilePic" />
-        <div class="userProfileNameAndEmail">
+        <div className="userProfileNameAndEmail">
           <input type="text" defaultValue={displayName} onBlur={handleDisplayNameUpdate}></input>
           <p>{email}</p>
         </div>
