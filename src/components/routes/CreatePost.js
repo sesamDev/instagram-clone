@@ -1,3 +1,5 @@
+import "../../styles/CreatePost.css";
+
 import { addDoc, collection, getFirestore, serverTimestamp, updateDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
 import { getProfilePicUrl, getUserName, getUserUID } from "../../App";
@@ -53,10 +55,13 @@ function handleUploadButton(e) {
 const CreatePost = (props) => {
   console.log(props.auth.currentUser.uid);
   return (
-    <div>
+    <div className="newPostContainer">
       <h1>Upload new post</h1>
       <form onSubmit={handleUploadButton}>
-        <textarea name="postTextContent" />
+        <textarea name="postTextContent" placeholder="Write a caption.." />
+        <label className="uploadLabel" for="mediaCapture">
+          Upload image
+        </label>
         <input name="imageFile" id="mediaCapture" type="file" accept="image/*" capture="camera" required />
         <button type="submit">Upload</button>
       </form>

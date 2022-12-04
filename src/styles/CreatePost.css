@@ -1,0 +1,41 @@
+.newPostContainer {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+}
+
+.newPostContainer > form {
+  display: flex;
+  flex-direction: column;
+}
+
+.newPostContainer > form > textarea {
+  resize: none;
+  height: 300px;
+  width: 300px;
+  background-color: transparent;
+  color: white;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+}
+
+.newPostContainer > form > label {
+  margin-top: 0.5rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.newPostContainer > form > input[type="file"] {
+  display: none;
+  margin-top: 0.5rem;
+}
+
+.newPostContainer > form > button {
+  background-color: rgb(116, 177, 221);
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 0.5rem;
+}
