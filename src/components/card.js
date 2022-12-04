@@ -110,9 +110,11 @@ const Card = (props) => {
       </div>
       <div className="numLikes">{!!likes ? `${likes.length} likes` : " - likes"}</div>
       <div className="cardTextContent">{text}</div>
-      <div className="cardShowComments">See all comments</div>
-      <div className="datetimePosted">timestamp</div>
-      <div className="addComment">Add a comment</div>
+      <div className="cardContainerBottom">
+        <div className="cardShowComments">See all comments</div>
+        <div className="datetimePosted">timestamp</div>
+        <div className="addComment">Add a comment</div>
+      </div>
     </div>
   );
 };

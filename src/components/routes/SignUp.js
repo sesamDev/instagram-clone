@@ -2,6 +2,7 @@ import "../../styles/SignUp.css";
 
 import React from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import defaultUser from "../../assets/defaultUser.png";
 import { updateProfile } from "firebase/auth";
 
 const SignUp = (props) => {
@@ -15,6 +16,7 @@ const SignUp = (props) => {
     await createUserWithEmailAndPassword(auth, email, password);
     await updateProfile(auth.currentUser, {
       displayName: username,
+      profilePicUrl: defaultUser,
     });
 
     // Navigate to home page after creating account
@@ -32,7 +34,7 @@ const SignUp = (props) => {
         </button>
         <div>
           Already have an account?{" "}
-          <button className="loginButton" onClick={() => props.setActiveView("login")}>
+          <button className="signUpButton" onClick={() => props.setActiveView("login")}>
             Login
           </button>
         </div>

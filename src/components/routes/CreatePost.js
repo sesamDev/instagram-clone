@@ -20,7 +20,7 @@ async function savePostToStorage(file, postTextContent) {
       imageUrl: "",
       profilePicUrl: getProfilePicUrl(),
       timestamp: serverTimestamp(),
-      likes: 0,
+      likes: [],
     });
     // 2 - Upload the image to Cloud Storage.
     const filePath = `${getAuth().currentUser.uid}/${postRef.id}/${file.name}`;

@@ -9,6 +9,7 @@ import Login from "./components/routes/Login";
 import Navbar from "./components/Navbar";
 import Profile from "./components/routes/Profile";
 import SignUp from "./components/routes/SignUp";
+import defaultUser from "./assets/defaultUser.png";
 import firebaseConfig from "./firebaseConfig";
 import { initializeApp } from "firebase/app";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -26,7 +27,7 @@ export function getUserName() {
 
 // Returns the signed-in user's profile Pic URL.
 export function getProfilePicUrl() {
-  return getAuth().currentUser.photoURL || "/images/profile_placeholder.png";
+  return getAuth().currentUser.photoURL || defaultUser;
 }
 
 // Signs-out of Fakegram.
