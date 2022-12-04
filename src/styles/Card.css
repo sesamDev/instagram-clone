@@ -35,3 +35,12 @@
   flex-shrink: 1;
   align-self: center;
 }
+
+#likeButton > svg {
+  fill: black;
+}
+
+#likeButton.paintRed > svg {
+  fill: rgb(218, 0, 0);
+  font-weight: bold;
+}
