@@ -109,7 +109,10 @@ const Card = (props) => {
         <span>{savePostButton}</span>
       </div>
       <div className="numLikes">{!!likes ? `${likes.length} likes` : " - likes"}</div>
-      <div className="cardTextContent">{text}</div>
+      <div className="cardTextContent">
+        {<strong>{text.name}</strong>}
+        {` ${text.caption}`}
+      </div>
       <div className="cardContainerBottom">
         <div className="cardShowComments">See all comments</div>
         <div className="datetimePosted">timestamp</div>

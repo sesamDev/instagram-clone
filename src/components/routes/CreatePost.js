@@ -6,7 +6,6 @@ import { getProfilePicUrl, getUserName, getUserUID } from "../../App";
 
 import React from "react";
 import { getAuth } from "firebase/auth";
-import uniqid from "uniqid";
 
 // Saves a new post containing an image and text in Firebase.
 // This first saves the text in Firestore.
@@ -15,10 +14,9 @@ async function savePostToStorage(file, postTextContent) {
   try {
     // 1 - Add a post with a loading icon that will get updated with the shared image.
     const postRef = await addDoc(collection(getFirestore(), "posts"), {
-      id: uniqid(),
       uid: getUserUID(),
       name: getUserName(),
-      text: postTextContent,
+      text: { name: getUserName(), caption: postTextContent },
       imageUrl: "",
       profilePicUrl: getProfilePicUrl(),
       timestamp: serverTimestamp(),
@@ -32,7 +30,7 @@ async function savePostToStorage(file, postTextContent) {
     // 3 - Generate a public URL for the file.
     const publicImageUrl = await getDownloadURL(newImageRef);
 
-    // 4 - Update the chat message placeholder with the image's URL.
+    // 4 - Update the post placeholder with the image's URL.
     await updateDoc(postRef, {
       imageUrl: publicImageUrl,
       storageUri: fileSnapshot.metadata.fullPath,
@@ -59,7 +57,7 @@ const CreatePost = (props) => {
       <h1>Upload new post</h1>
       <form onSubmit={handleUploadButton}>
         <textarea name="postTextContent" placeholder="Write a caption.." />
-        <label className="uploadLabel" for="mediaCapture">
+        <label className="uploadLabel" htmlFor="mediaCapture">
           Upload image
         </label>
         <input name="imageFile" id="mediaCapture" type="file" accept="image/*" capture="camera" required />
